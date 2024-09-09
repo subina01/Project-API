@@ -133,3 +133,4 @@ C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\System.Net.Http.Fo
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\System.Web.Http.dll
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\subia\source\repos\Carrental.WebAPI\obj\Debug\net8.0\Carrental.WebAPI.sourcelink.json

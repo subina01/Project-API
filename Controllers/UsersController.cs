@@ -2,6 +2,7 @@
 using Carrental.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace Carrental.WebAPI.Controllers
@@ -63,8 +64,9 @@ namespace Carrental.WebAPI.Controllers
             var user = _context.Users.FirstOrDefault(x => x.UserName ==  loginDTO.UserName && x.Password == loginDTO.Password);
             if (user != null)
             {
+                
 
-                return Ok("Login Sucessful!!");
+                return Ok(user);
             }
             else
             {
