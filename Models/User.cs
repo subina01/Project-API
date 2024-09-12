@@ -47,5 +47,10 @@ namespace Carrental.WebAPI.Models
         public string? DriverLicInfo { get; set; }
 
         public string? UserType { get; set; }
+
+
+        public int FailedLoginAttempts { get; set; } = 0;
+        public bool IsBlocked { get; set; } = false;
+        public DateTime? BlockedUntil { get; set; }
     }
 }

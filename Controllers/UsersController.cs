@@ -61,16 +61,45 @@ namespace Carrental.WebAPI.Controllers
         public IActionResult Login(LoginDTO loginDTO)
         {
 
-            var user = _context.Users.FirstOrDefault(x => x.UserName ==  loginDTO.UserName && x.Password == loginDTO.Password);
-            if (user != null)
+            var user = _context.Users.FirstOrDefault(x => x.UserName == loginDTO.UserName);
+            if (user == null)
+            {
+                return BadRequest("User is not registered");
+            }
+
+            
+            if (user.IsBlocked && user.BlockedUntil > DateTime.UtcNow)
+            {
+                return BadRequest("User is blocked. Please try again after 2 minutes.");
+            }
+            else if (user.IsBlocked && user.BlockedUntil <= DateTime.UtcNow)
             {
                 
+                user.IsBlocked = false;
+                user.FailedLoginAttempts = 0;
+                user.BlockedUntil = null;
+                _context.SaveChanges();
+            }
 
+          
+            if (user.Password == loginDTO.Password)
+            {
+               
+                user.FailedLoginAttempts = 0;
+                _context.SaveChanges();
                 return Ok(user);
             }
             else
             {
-                return BadRequest("User is not registered");
+               
+                user.FailedLoginAttempts++;
+                if (user.FailedLoginAttempts >= 3)
+                {
+                    user.IsBlocked = true;
+                    user.BlockedUntil = DateTime.UtcNow.AddMinutes(2);
+                }
+                _context.SaveChanges();
+                return BadRequest("Invalid username or password");
             }
         }
 

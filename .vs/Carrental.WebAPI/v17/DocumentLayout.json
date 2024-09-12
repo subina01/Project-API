@@ -3,28 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\registrationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\registrationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\vehiclemodelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\vehiclemodelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehiclemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehiclemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\vehiclebrandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\vehiclebrandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehiclebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehiclebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehiclecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehiclecategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +66,189 @@
       "DocumentGroups": [
         {
           "DockedHeight": 380,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginDTO.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\LoginDTO.cs",
-              "RelativeDocumentMoniker": "Models\\LoginDTO.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\LoginDTO.cs",
-              "RelativeToolTip": "Models\\LoginDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-08T09:47:25.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAEgAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T13:41:27.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T13:34:54.978Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RegistrationDTO.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\RegistrationDTO.cs",
-              "RelativeDocumentMoniker": "Models\\RegistrationDTO.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\RegistrationDTO.cs",
-              "RelativeToolTip": "Models\\RegistrationDTO.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAgwDEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T13:33:15.172Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAtAAAA",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswDUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T13:33:03.732Z",
+              "WhenOpened": "2024-09-12T17:45:38.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T17:43:40.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Controllers\\BookingController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T17:12:07.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VehicleController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VehicleController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleController.cs",
+              "RelativeToolTip": "Controllers\\VehicleController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T16:57:19.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VehicleModel.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleModel.cs",
+              "RelativeDocumentMoniker": "Models\\VehicleModel.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleModel.cs",
+              "RelativeToolTip": "Models\\VehicleModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T16:35:33.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABoAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-03T14:14:43.403Z"
+              "Title": "VehicleModelController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleModelController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VehicleModelController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleModelController.cs",
+              "RelativeToolTip": "Controllers\\VehicleModelController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T16:16:22.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:41:34.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VehicleBrandController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleBrandController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VehicleBrandController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleBrandController.cs",
+              "RelativeToolTip": "Controllers\\VehicleBrandController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T16:47:54.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LocationController.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\LocationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LocationController.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\LocationController.cs",
+              "RelativeToolTip": "Controllers\\LocationController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwDIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T17:07:48.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "Models\\Booking.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Booking.cs",
+              "RelativeToolTip": "Models\\Booking.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:38:00.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Location.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Location.cs",
+              "RelativeDocumentMoniker": "Models\\Location.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Location.cs",
+              "RelativeToolTip": "Models\\Location.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:26:13.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "VehicleBrand.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleBrand.cs",
+              "RelativeDocumentMoniker": "Models\\VehicleBrand.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleBrand.cs",
+              "RelativeToolTip": "Models\\VehicleBrand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:14:13.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
+              "RelativeDocumentMoniker": "Models\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
+              "RelativeToolTip": "Models\\Vehicle.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwBYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:18:24.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "VehicleCategory.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleCategory.cs",
+              "RelativeDocumentMoniker": "Models\\VehicleCategory.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleCategory.cs",
+              "RelativeToolTip": "Models\\VehicleCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T14:12:40.192Z",
+              "EditorCaption": ""
             }
           ]
         },
