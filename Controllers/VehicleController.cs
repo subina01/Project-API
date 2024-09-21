@@ -2,6 +2,8 @@
 using Carrental.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Carrental.WebAPI.Controllers
 {
@@ -10,10 +12,16 @@ namespace Carrental.WebAPI.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly string _imageDirectory = "wwwroot/vehicle-images"; 
 
         public VehicleController(ApplicationDbContext context)
         {
             _context = context;
+
+            if (!Directory.Exists(_imageDirectory))
+            {
+                Directory.CreateDirectory(_imageDirectory);
+            }
         }
 
         // Get all Vehicles
@@ -47,13 +55,19 @@ namespace Carrental.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Handle image file
             if (imageFile != null && imageFile.Length > 0)
             {
-                using (var memoryStream = new MemoryStream())
+                var fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
+                var fileExtension = Path.GetExtension(imageFile.FileName);
+                var filePath = Path.Combine(_imageDirectory, $"{fileName}_{DateTime.Now.Ticks}{fileExtension}");
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await imageFile.CopyToAsync(memoryStream);
-                    vehicle.Image = memoryStream.ToArray();
+                    await imageFile.CopyToAsync(stream);
                 }
+
+                vehicle.ImagePath = filePath; // Save the file path to the database
             }
 
             _context.Vehicles.Add(vehicle);
@@ -76,17 +90,19 @@ namespace Carrental.WebAPI.Controllers
             existingVehicle.Price = vehicle.Price;
             existingVehicle.Detail = vehicle.Detail;
 
+            // Handle image file update
             if (imageFile != null && imageFile.Length > 0)
             {
-                using (var memoryStream = new MemoryStream())
+                var fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
+                var fileExtension = Path.GetExtension(imageFile.FileName);
+                var filePath = Path.Combine(_imageDirectory, $"{fileName}_{DateTime.Now.Ticks}{fileExtension}");
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await imageFile.CopyToAsync(memoryStream);
-                    existingVehicle.Image = memoryStream.ToArray();
+                    await imageFile.CopyToAsync(stream);
                 }
-            }
-            else
-            {
-                existingVehicle.Image = vehicle.Image;
+
+                existingVehicle.ImagePath = filePath;
             }
 
             existingVehicle.Popular = vehicle.Popular;
@@ -109,12 +125,13 @@ namespace Carrental.WebAPI.Controllers
         public IActionResult GetVehicleImage(int id)
         {
             var vehicle = _context.Vehicles.FirstOrDefault(x => x.VehicleId == id);
-            if (vehicle == null || vehicle.Image == null)
+            if (vehicle == null || string.IsNullOrEmpty(vehicle.ImagePath))
             {
                 return NotFound();
             }
 
-            return File(vehicle.Image, "image/jpeg"); 
+            var image = System.IO.File.OpenRead(vehicle.ImagePath);
+            return File(image, "image/jpeg");
         }
 
         // Delete a Vehicle
@@ -128,11 +145,16 @@ namespace Carrental.WebAPI.Controllers
                 return BadRequest("Vehicle not found");
             }
 
+            // Delete the associated image file
+            if (!string.IsNullOrEmpty(vehicle.ImagePath) && System.IO.File.Exists(vehicle.ImagePath))
+            {
+                System.IO.File.Delete(vehicle.ImagePath);
+            }
+
             _context.Vehicles.Remove(vehicle);
             _context.SaveChanges();
 
             return Ok("Vehicle deleted successfully");
         }
-
     }
 }

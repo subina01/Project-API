@@ -23,8 +23,8 @@
         "IsRequired": false
       },
       {
-        "Name": "CNICimg",
-        "Type": "System.Byte[]",
+        "Name": "CNICimgPath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -58,8 +58,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.Image",
-        "Type": "System.Byte[]",
+        "Name": "Vehicle.ImagePath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -144,16 +144,6 @@
       },
       {
         "Name": "PaidAmount",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SecretCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "VerifyCode",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -252,8 +242,8 @@
         "IsRequired": false
       },
       {
-        "Name": "CNICimg",
-        "Type": "System.Byte[]",
+        "Name": "CNICimgPath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -287,8 +277,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.Image",
-        "Type": "System.Byte[]",
+        "Name": "Vehicle.ImagePath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -377,19 +367,88 @@
         "IsRequired": false
       },
       {
-        "Name": "SecretCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "VerifyCode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "cnicImageFile",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.CategoryController",
+    "Method": "AddVehicleCategory",
+    "RelativePath": "api/Category/AddVehicleCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "Carrental.WebAPI.Models.VehicleCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.CategoryController",
+    "Method": "DeleteVehicleCategory",
+    "RelativePath": "api/Category/DeleteVehicleCategory/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.CategoryController",
+    "Method": "GetVehicleCategories",
+    "RelativePath": "api/Category/GetVehicleCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.CategoryController",
+    "Method": "GetVehicleCategory",
+    "RelativePath": "api/Category/GetVehicleCategory/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.CategoryController",
+    "Method": "UpdateVehicleCategory",
+    "RelativePath": "api/Category/UpdateVehicleCategory/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "category",
+        "Type": "Carrental.WebAPI.Models.VehicleCategory",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -555,8 +614,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Image",
-        "Type": "System.Byte[]",
+        "Name": "ImagePath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -724,8 +783,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Image",
-        "Type": "System.Byte[]",
+        "Name": "ImagePath",
+        "Type": "System.String",
         "IsRequired": false
       },
       {

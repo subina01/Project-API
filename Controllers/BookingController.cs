@@ -2,6 +2,8 @@
 using Carrental.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Carrental.WebAPI.Controllers
 {
@@ -10,10 +12,17 @@ namespace Carrental.WebAPI.Controllers
     public class BookingController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly string _cnicImageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cnic-images");
 
         public BookingController(ApplicationDbContext context)
         {
             _context = context;
+
+            // Ensure the directory exists
+            if (!Directory.Exists(_cnicImageDirectory))
+            {
+                Directory.CreateDirectory(_cnicImageDirectory);
+            }
         }
 
         // Get all Bookings
@@ -49,11 +58,14 @@ namespace Carrental.WebAPI.Controllers
 
             if (cnicImageFile != null && cnicImageFile.Length > 0)
             {
-                using (var memoryStream = new MemoryStream())
+                var imagePath = Path.Combine(_cnicImageDirectory, cnicImageFile.FileName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
-                    await cnicImageFile.CopyToAsync(memoryStream);
-                    booking.CNICimg = memoryStream.ToArray();
+                    await cnicImageFile.CopyToAsync(stream);
                 }
+
+                booking.CNICimgPath = $"/cnic-images/{cnicImageFile.FileName}";
             }
 
             _context.Bookings.Add(booking);
@@ -81,20 +93,18 @@ namespace Carrental.WebAPI.Controllers
             existingBooking.UserName = booking.UserName;
             existingBooking.ReturnedDate = booking.ReturnedDate;
             existingBooking.PaidAmount = booking.PaidAmount;
-            existingBooking.SecretCode = booking.SecretCode;
-            existingBooking.VerifyCode = booking.VerifyCode;
+          
 
             if (cnicImageFile != null && cnicImageFile.Length > 0)
             {
-                using (var memoryStream = new MemoryStream())
+                var imagePath = Path.Combine(_cnicImageDirectory, cnicImageFile.FileName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
-                    await cnicImageFile.CopyToAsync(memoryStream);
-                    existingBooking.CNICimg = memoryStream.ToArray();
+                    await cnicImageFile.CopyToAsync(stream);
                 }
-            }
-            else
-            {
-                existingBooking.CNICimg = booking.CNICimg;
+
+                existingBooking.CNICimgPath = $"/cnic-images/{cnicImageFile.FileName}";
             }
 
             _context.SaveChanges();
@@ -108,12 +118,20 @@ namespace Carrental.WebAPI.Controllers
         public IActionResult GetCNICImage(int id)
         {
             var booking = _context.Bookings.FirstOrDefault(x => x.Id == id);
-            if (booking == null || booking.CNICimg == null)
+            if (booking == null || string.IsNullOrEmpty(booking.CNICimgPath))
             {
                 return NotFound();
             }
 
-            return File(booking.CNICimg, "image/jpeg"); 
+            var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", booking.CNICimgPath.TrimStart('/'));
+
+            if (!System.IO.File.Exists(imagePath))
+            {
+                return NotFound();
+            }
+
+            var image = System.IO.File.ReadAllBytes(imagePath);
+            return File(image, "image/jpeg");
         }
 
         // Delete a Booking
@@ -127,6 +145,17 @@ namespace Carrental.WebAPI.Controllers
                 return BadRequest("Booking not found");
             }
 
+            // Delete the CNIC image file if it exists
+            if (!string.IsNullOrEmpty(booking.CNICimgPath))
+            {
+                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", booking.CNICimgPath.TrimStart('/'));
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
             _context.Bookings.Remove(booking);
             _context.SaveChanges();
 
@@ -134,4 +163,5 @@ namespace Carrental.WebAPI.Controllers
         }
     }
 }
+
 

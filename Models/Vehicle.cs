@@ -5,7 +5,8 @@
         public int VehicleId { get; set; }
         public string? Price { get; set; }
         public string? Detail { get; set; }
-        public byte[]? Image { get; set; }
+        public string? ImagePath { get; set; }
+
         public string? Popular { get; set; }
         public string? Damage { get; set; }
         public string? Available { get; set; }
@@ -23,3 +24,4 @@
         public string? Remarks { get; set; }
     }
 }
+
