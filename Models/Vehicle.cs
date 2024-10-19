@@ -1,11 +1,13 @@
-﻿namespace Carrental.WebAPI.Models
+﻿using System.Collections.Generic;
+
+namespace Carrental.WebAPI.Models
 {
     public class Vehicle
     {
         public int VehicleId { get; set; }
         public string? Price { get; set; }
         public string? Detail { get; set; }
-        public string? ImagePath { get; set; }
+        public List<string>? ImagePaths { get; set; } 
 
         public string? Popular { get; set; }
         public string? Damage { get; set; }
