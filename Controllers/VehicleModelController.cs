@@ -83,6 +83,7 @@ namespace Carrental.WebAPI.Controllers
 
             _context.VehicleModels.Remove(vehicleModel);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Vehicle Model deleted successfully");
         }

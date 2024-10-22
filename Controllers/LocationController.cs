@@ -84,6 +84,7 @@ namespace Carrental.WebAPI.Controllers
 
             _context.Locations.Remove(location);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Location deleted successfully");
         }

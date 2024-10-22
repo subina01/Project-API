@@ -1,8 +1,10 @@
 ﻿using Carrental.WebAPI.Data;
 using Carrental.WebAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Carrental.WebAPI.Controllers
@@ -12,63 +14,46 @@ namespace Carrental.WebAPI.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly string _imageDirectory = "wwwroot/vehicle-images";
+        private readonly string _imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
         public VehicleController(ApplicationDbContext context)
         {
             _context = context;
-
-            if (!Directory.Exists(_imageDirectory))
-            {
-                Directory.CreateDirectory(_imageDirectory);
-            }
         }
 
-
-        // Get all Vehicles with Images
-        [HttpGet]
-        [Route("GetVehicles")]
+        // Get all Vehicles
+        [HttpGet("GetVehicles")]
         public IActionResult GetVehicles()
         {
-            var vehicles = _context.Vehicles.ToList();
-
-            
-            foreach (var vehicle in vehicles)
-            {
-                if (vehicle.ImagePaths != null)
-                {
-                    vehicle.ImagePaths = vehicle.ImagePaths.Select(path => $"{Request.Scheme}://{Request.Host}/vehicle-images/{Path.GetFileName(path)}").ToList();
-                }
-            }
+            var vehicles = _context.Vehicles
+                .Include(v => v.VehicleImages)
+                .Include(v => v.Category)
+                .Include(v => v.Model)
+                .Include(v => v.Brand)
+                .ToList();
 
             return Ok(vehicles);
         }
 
         // Get a specific Vehicle by ID
-        [HttpGet]
-        [Route("GetVehicle/{id}")]
+        [HttpGet("GetVehicle/{id}")]
         public IActionResult GetVehicle(int id)
         {
-            var vehicle = _context.Vehicles.FirstOrDefault(x => x.VehicleId == id);
+            var vehicle = _context.Vehicles
+                .Include(v => v.VehicleImages)
+                .Include(v => v.Category)
+                .Include(v => v.Model)
+                .Include(v => v.Brand)
+                .FirstOrDefault(v => v.VehicleId == id);
+
             if (vehicle == null)
             {
                 return NoContent();
             }
 
-            if (vehicle.ImagePaths != null)
-            {
-                vehicle.ImagePaths = vehicle.ImagePaths.Select(path => $"{Request.Scheme}://{Request.Host}/vehicle-images/{Path.GetFileName(path)}").ToList();
-            }
-
             return Ok(vehicle);
         }
 
-
-
-     
-
-
-        // Add a new Vehicle
         [HttpPost]
         [Route("AddVehicle")]
         public async Task<IActionResult> AddVehicle([FromForm] Vehicle vehicle, List<IFormFile> imageFiles)
@@ -78,67 +63,97 @@ namespace Carrental.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            vehicle.ImagePaths = new List<string>(); 
-
-            
-            foreach (var imageFile in imageFiles)
+            if (!_context.VehicleBrands.Any(b => b.BrandId == vehicle.BrandId) ||
+                !_context.VehicleCategories.Any(c => c.CategoryId == vehicle.CategoryId) ||
+                !_context.VehicleModels.Any(m => m.ModelId == vehicle.ModelId))
             {
-                if (imageFile != null && imageFile.Length > 0)
-                {
-                    var fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
-                    var fileExtension = Path.GetExtension(imageFile.FileName);
-                    var filePath = Path.Combine(_imageDirectory, $"{fileName}_{DateTime.Now.Ticks}{fileExtension}");
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                    }
-
-                    vehicle.ImagePaths.Add(filePath); 
-                }
+                return BadRequest("Invalid BrandId, CategoryId, or ModelId.");
             }
 
             _context.Vehicles.Add(vehicle);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); 
 
-            return Ok("Vehicle added successfully");
+            
+            var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(uploadsDirectory))
+            {
+                Directory.CreateDirectory(uploadsDirectory);
+            }
+
+            if (imageFiles != null && imageFiles.Count > 0)
+            {
+                foreach (var file in imageFiles)
+                {
+                    if (file.Length > 0)
+                    {
+                        var imagePath = Path.Combine(uploadsDirectory, file.FileName);
+                        using (var stream = new FileStream(imagePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+
+                   
+                        var vehicleImage = new VehicleImage
+                        {
+                            ImagePath = file.FileName, 
+                            VehicleId = vehicle.VehicleId 
+                        };
+
+                        _context.VehicleImages.Add(vehicleImage);
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok("Vehicle added successfully with images.");
         }
 
 
-        // Update an existing Vehicle
-        [HttpPut]
-        [Route("UpdateVehicle/{id}")]
-        public async Task<IActionResult> UpdateVehicle(int id, [FromForm] Vehicle vehicle, List<IFormFile> imageFiles)
+
+        [HttpPut("UpdateVehicle/{id}")]
+        public async Task<IActionResult> UpdateVehicle(int id, [FromForm] Vehicle vehicle, [FromForm] List<IFormFile> vehicleImages)
         {
-            var existingVehicle = await _context.Vehicles.FindAsync(id);
+            var existingVehicle = await _context.Vehicles.Include(v => v.VehicleImages).FirstOrDefaultAsync(v => v.VehicleId == id);
             if (existingVehicle == null)
             {
-                return BadRequest("Vehicle not found");
+                return NotFound("Vehicle not found.");
+            }
+
+
+            existingVehicle.VehicleImages.Clear();
+
+            if (vehicleImages != null && vehicleImages.Count > 0)
+            {
+                var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsDirectory))
+                {
+                    Directory.CreateDirectory(uploadsDirectory);
+                }
+
+                foreach (var image in vehicleImages)
+                {
+                    if (image.Length > 0)
+                    {
+                        var fileName = Path.GetFileName(image.FileName);
+                        var filePath = Path.Combine(uploadsDirectory, fileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+
+                        var vehicleImage = new VehicleImage
+                        {
+                            ImagePath = fileName,
+                            VehicleId = existingVehicle.VehicleId
+                        };
+                        existingVehicle.VehicleImages.Add(vehicleImage);
+                    }
+                }
             }
 
             existingVehicle.Price = vehicle.Price;
             existingVehicle.Detail = vehicle.Detail;
-
-           
-            existingVehicle.ImagePaths = existingVehicle.ImagePaths ?? new List<string>(); 
-
-            foreach (var imageFile in imageFiles)
-            {
-                if (imageFile != null && imageFile.Length > 0)
-                {
-                    var fileName = Path.GetFileNameWithoutExtension(imageFile.FileName);
-                    var fileExtension = Path.GetExtension(imageFile.FileName);
-                    var filePath = Path.Combine(_imageDirectory, $"{fileName}_{DateTime.Now.Ticks}{fileExtension}");
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await imageFile.CopyToAsync(stream);
-                    }
-
-                    existingVehicle.ImagePaths.Add(filePath); 
-                }
-            }
-
             existingVehicle.Popular = vehicle.Popular;
             existingVehicle.Damage = vehicle.Damage;
             existingVehicle.Available = vehicle.Available;
@@ -150,101 +165,67 @@ namespace Carrental.WebAPI.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("Vehicle updated successfully");
+            return Ok("Vehicle updated successfully.");
         }
-
-
-        // Get Image by Vehicle ID (to return all images)
-        [HttpGet]
-        [Route("GetVehicleImages/{id}")]
-        public IActionResult GetVehicleImages(int id)
-        {
-            var vehicle = _context.Vehicles.FirstOrDefault(x => x.VehicleId == id);
-            if (vehicle == null || vehicle.ImagePaths == null || !vehicle.ImagePaths.Any())
-            {
-                return NotFound();
-            }
-
-            var imageUrls = vehicle.ImagePaths.Select(path => $"{Request.Scheme}://{Request.Host}/vehicle-images/{Path.GetFileName(path)}").ToList();
-            return Ok(imageUrls);
-        }
-
 
         // Delete a Vehicle
-        [HttpDelete]
-        [Route("DeleteVehicle/{id}")]
+        [HttpDelete("DeleteVehicle/{id}")]
         public IActionResult DeleteVehicle(int id)
         {
-            var vehicle = _context.Vehicles.FirstOrDefault(x => x.VehicleId == id);
+            var vehicle = _context.Vehicles.Find(id);
             if (vehicle == null)
             {
-                return BadRequest("Vehicle not found");
-            }
-
-            
-            if (vehicle.ImagePaths != null)
-            {
-                foreach (var imagePath in vehicle.ImagePaths)
-                {
-                    if (System.IO.File.Exists(imagePath))
-                    {
-                        System.IO.File.Delete(imagePath);
-                    }
-                }
+                return NotFound("Vehicle not found");
             }
 
             _context.Vehicles.Remove(vehicle);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Vehicle deleted successfully");
         }
 
-        // Get all Vehicles by Category
-        [HttpGet]
-        [Route("GetVehiclesByCategory/{categoryId}")]
+        //Get Vehicles By Category
+        [HttpGet("GetVehiclesByCategory/{categoryId}")]
         public IActionResult GetVehiclesByCategory(int categoryId)
         {
+           
             var vehicles = _context.Vehicles
-                .Where(v => v.CategoryId == categoryId)
+                .Where(v => v.CategoryId == categoryId)  
+                .Include(v => v.Category)                 
+                .Include(v => v.Model)                    
+                .Include(v => v.Brand)                    
+                .Include(v => v.VehicleImages)            
                 .ToList();
 
-            
-            foreach (var vehicle in vehicles)
+            if (vehicles == null || vehicles.Count == 0)
             {
-                if (vehicle.ImagePaths != null)
-                {
-                    vehicle.ImagePaths = vehicle.ImagePaths
-                        .Select(path => $"{Request.Scheme}://{Request.Host}/vehicle-images/{Path.GetFileName(path)}")
-                        .ToList();
-                }
+                return NotFound($"No vehicles found for category id {categoryId}");
             }
 
             return Ok(vehicles);
         }
 
-        // Get all Popular Vehicles
-        [HttpGet]
-        [Route("GetPopularVehicles")]
+
+        [HttpGet("GetPopularVehicles")]
         public IActionResult GetPopularVehicles()
         {
+            
             var vehicles = _context.Vehicles
-                .Where(v => v.Popular == "Yes" || v.Popular == "yes")
+                .Where(v => v.Popular.ToLower() == "Yes") 
+                .Include(v => v.Category)                
+                .Include(v => v.Model)                   
+                .Include(v => v.Brand)                    
+                .Include(v => v.VehicleImages)           
                 .ToList();
 
-            foreach (var vehicle in vehicles)
+            if (vehicles == null || vehicles.Count == 0)
             {
-                if (vehicle.ImagePaths != null)
-                {
-                    vehicle.ImagePaths = vehicle.ImagePaths
-                        .Select(path => $"{Request.Scheme}://{Request.Host}/vehicle-images/{Path.GetFileName(path)}")
-                        .ToList();
-                }
+                return NotFound("No popular vehicles found.");
             }
 
             return Ok(vehicles);
         }
-
-
 
     }
 }

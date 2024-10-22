@@ -49,7 +49,7 @@
       },
       {
         "Name": "Vehicle.Price",
-        "Type": "System.String",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -58,8 +58,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.ImagePath",
-        "Type": "System.String",
+        "Name": "Vehicle.VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -79,7 +79,27 @@
       },
       {
         "Name": "Vehicle.ModelId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.Remarks",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -93,8 +113,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.BrandId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Vehicle.Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -108,8 +128,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.CategoryId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Vehicle.Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -123,13 +143,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.Remarks",
-        "Type": "System.String",
+        "Name": "Vehicle.Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -268,7 +283,7 @@
       },
       {
         "Name": "Vehicle.Price",
-        "Type": "System.String",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -277,8 +292,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.ImagePath",
-        "Type": "System.String",
+        "Name": "Vehicle.VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -298,7 +313,27 @@
       },
       {
         "Name": "Vehicle.ModelId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Vehicle.Remarks",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -312,8 +347,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.BrandId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Vehicle.Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -327,8 +362,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.CategoryId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "Vehicle.Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -342,13 +377,8 @@
         "IsRequired": false
       },
       {
-        "Name": "Vehicle.UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.Remarks",
-        "Type": "System.String",
+        "Name": "Vehicle.Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -605,7 +635,7 @@
       },
       {
         "Name": "Price",
-        "Type": "System.String",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -614,8 +644,8 @@
         "IsRequired": false
       },
       {
-        "Name": "ImagePath",
-        "Type": "System.String",
+        "Name": "VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -635,47 +665,17 @@
       },
       {
         "Name": "ModelId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Model.ModelId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Model.VehicleModelName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "BrandId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Brand.BrandId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Brand.VehicleBrandName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "CategoryId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Category.CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Category.VehicleCategoryName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -689,8 +689,53 @@
         "IsRequired": false
       },
       {
-        "Name": "imageFile",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "Model.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Model.VehicleModelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.VehicleBrandName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.VehicleCategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "imageFiles",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
         "IsRequired": false
       }
     ],
@@ -730,28 +775,28 @@
   },
   {
     "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
-    "Method": "GetVehicleImage",
-    "RelativePath": "api/Vehicle/GetVehicleImage/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
     "Method": "GetVehicles",
     "RelativePath": "api/Vehicle/GetVehicles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
+    "Method": "GetVehiclesByCategory",
+    "RelativePath": "api/Vehicle/GetVehiclesByCategory/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -774,7 +819,7 @@
       },
       {
         "Name": "Price",
-        "Type": "System.String",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -783,8 +828,8 @@
         "IsRequired": false
       },
       {
-        "Name": "ImagePath",
-        "Type": "System.String",
+        "Name": "VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
       {
@@ -804,47 +849,17 @@
       },
       {
         "Name": "ModelId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Model.ModelId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Model.VehicleModelName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "BrandId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Brand.BrandId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Brand.VehicleBrandName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "CategoryId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Category.CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Category.VehicleCategoryName",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -858,8 +873,53 @@
         "IsRequired": false
       },
       {
-        "Name": "imageFile",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "Model.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Model.VehicleModelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.VehicleBrandName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.VehicleCategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "vehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
         "IsRequired": false
       }
     ],

@@ -84,6 +84,7 @@ namespace Carrental.WebAPI.Controllers
 
             _context.VehicleCategories.Remove(category);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Vehicle Category deleted successfully");
         }

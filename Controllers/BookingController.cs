@@ -158,9 +158,12 @@ namespace Carrental.WebAPI.Controllers
 
             _context.Bookings.Remove(booking);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Booking deleted successfully");
         }
+
+
     }
 }
 

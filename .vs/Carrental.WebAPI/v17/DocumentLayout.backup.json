@@ -7,8 +7,20 @@
       "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehicleimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehicleimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,20 +29,60 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 380,
-          "SelectedChildIndex": 1,
+          "DockedHeight": 24,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T03:53:58.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA/wAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T17:48:38.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "VehicleImage.cs",
+              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleImage.cs",
+              "RelativeDocumentMoniker": "Models\\VehicleImage.cs",
+              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\VehicleImage.cs",
+              "RelativeToolTip": "Models\\VehicleImage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T17:40:42.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Vehicle.cs",
               "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
               "RelativeDocumentMoniker": "Models\\Vehicle.cs",
               "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
               "RelativeToolTip": "Models\\Vehicle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA3wBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T14:15:02.864Z"
+              "WhenOpened": "2024-10-21T16:56:05.492Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,7 +92,7 @@
               "RelativeDocumentMoniker": "Controllers\\VehicleController.cs",
               "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleController.cs",
               "RelativeToolTip": "Controllers\\VehicleController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwB0AAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAALEAAAAAAAAAAAAIwM4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-05T13:57:24.924Z",
               "EditorCaption": ""
@@ -48,7 +100,7 @@
           ]
         },
         {
-          "DockedHeight": 20,
+          "DockedHeight": 376,
           "SelectedChildIndex": -1,
           "Children": [
             {

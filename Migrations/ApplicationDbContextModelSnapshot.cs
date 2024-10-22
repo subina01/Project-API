@@ -160,36 +160,39 @@ namespace Carrental.WebAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleId"));
 
                     b.Property<string>("Available")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BrandId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Damage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Detail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ModelId")
+                    b.Property<int>("ModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Popular")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Remarks")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VehicleId");
@@ -236,6 +239,28 @@ namespace Carrental.WebAPI.Migrations
                     b.ToTable("VehicleCategories");
                 });
 
+            modelBuilder.Entity("Carrental.WebAPI.Models.VehicleImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("VehicleImages");
+                });
+
             modelBuilder.Entity("Carrental.WebAPI.Models.VehicleModel", b =>
                 {
                     b.Property<int>("ModelId")
@@ -257,7 +282,7 @@ namespace Carrental.WebAPI.Migrations
                     b.HasOne("Carrental.WebAPI.Models.Vehicle", "Vehicle")
                         .WithMany()
                         .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Vehicle");
                 });
@@ -265,25 +290,59 @@ namespace Carrental.WebAPI.Migrations
             modelBuilder.Entity("Carrental.WebAPI.Models.Vehicle", b =>
                 {
                     b.HasOne("Carrental.WebAPI.Models.VehicleBrand", "Brand")
-                        .WithMany()
+                        .WithMany("Vehicles")
                         .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Carrental.WebAPI.Models.VehicleCategory", "Category")
-                        .WithMany()
+                        .WithMany("Vehicles")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Carrental.WebAPI.Models.VehicleModel", "Model")
-                        .WithMany()
+                        .WithMany("Vehicles")
                         .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
 
                     b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.VehicleImage", b =>
+                {
+                    b.HasOne("Carrental.WebAPI.Models.Vehicle", "Vehicle")
+                        .WithMany("VehicleImages")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.Vehicle", b =>
+                {
+                    b.Navigation("VehicleImages");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.VehicleBrand", b =>
+                {
+                    b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.VehicleCategory", b =>
+                {
+                    b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.VehicleModel", b =>
+                {
+                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

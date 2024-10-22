@@ -249,3 +249,4 @@ C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\runtimes\win\lib\n
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\subia\source\repos\Carrental.WebAPI\bin\Debug\net8.0\Carrental.WebAPI.staticwebassets.runtime.json

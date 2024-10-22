@@ -84,6 +84,7 @@ namespace Carrental.WebAPI.Controllers
 
             _context.VehicleBrands.Remove(vehicleBrand);
             _context.SaveChanges();
+            _context.ReseedAllTables();
 
             return Ok("Vehicle Brand deleted successfully");
         }

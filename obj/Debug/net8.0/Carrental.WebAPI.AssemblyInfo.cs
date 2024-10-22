@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Carrental.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3648ab09145adb010b64c0fe2d585e3388fb316d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f02d5e3f36c717c5f24c3d7297962bb6b02e0e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Carrental.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Carrental.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

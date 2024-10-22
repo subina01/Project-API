@@ -1,55 +1,14 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:controllers\\vehiclecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|c:\\users\\subia\\source\\repos\\carrental.webapi\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1E3359F-484F-4003-B173-E7BE69CE7B8C}|Carrental.WebAPI.csproj|solutionrelative:models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 380,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Vehicle.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
-              "RelativeDocumentMoniker": "Models\\Vehicle.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Models\\Vehicle.cs",
-              "RelativeToolTip": "Models\\Vehicle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T14:15:02.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VehicleController.cs",
-              "DocumentMoniker": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleController.cs",
-              "RelativeDocumentMoniker": "Controllers\\VehicleController.cs",
-              "ToolTip": "C:\\Users\\subia\\source\\repos\\Carrental.WebAPI\\Controllers\\VehicleController.cs",
-              "RelativeToolTip": "Controllers\\VehicleController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwB0AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T13:57:24.924Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedHeight": 20,
+          "DockedHeight": 376,
           "SelectedChildIndex": -1,
           "Children": [
             {
