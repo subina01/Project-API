@@ -7,6 +7,8 @@ namespace Carrental.WebAPI.Models
         public int BrandId { get; set; }
         public string VehicleBrandName { get; set; }
 
+        public decimal RentalCharge { get; set; }
+
         [JsonIgnore]
         public ICollection<Vehicle> Vehicles { get; set; }
     }

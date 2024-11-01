@@ -1,20 +1,49 @@
-﻿namespace Carrental.WebAPI.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Carrental.WebAPI.Models
 {
     public class Booking
     {
         public int Id { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string? CNICimgPath { get; set; } 
+
+        [Required]
+        public DateTime StartDate { get; set; } 
+
+        [Required]
+        public DateTime? EndDate { get; set; } 
+        [MaxLength(200)]
+        public string? LicenseImgPath { get; set; }
+
+        [Required]
+        [MaxLength(200)]
         public string? Place { get; set; }
-        public string? Charges { get; set; }
 
         public int? VehicleId { get; set; }
         public Vehicle? Vehicle { get; set; }
 
-        public string? UserName { get; set; }
-        public DateTime? ReturnedDate { get; set; }
-        public string? PaidAmount { get; set; }
-       
+        [Required]
+        [MaxLength(10)]
+        public string? PhoneNumber { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string? Email { get; set; }
+
+        [MaxLength(500)]
+        public string? Address { get; set; }
+
+        [MaxLength(100)]
+        public string? BillingAddress { get; set; }
+
+        public bool InsuranceRequired { get; set; }
+
+        public string? SpecialRequests { get; set; }
+
+        public BookingConfirmation? BookingConfirmation { get; set; }
+
+
+
+
     }
 }

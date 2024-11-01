@@ -13,27 +13,22 @@
         "IsRequired": false
       },
       {
-        "Name": "StartTime",
+        "Name": "StartDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
       {
-        "Name": "EndTime",
-        "Type": "System.DateTime",
+        "Name": "EndDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "CNICimgPath",
+        "Name": "LicenseImgPath",
         "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "Place",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Charges",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -64,7 +59,7 @@
       },
       {
         "Name": "Vehicle.Popular",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -74,7 +69,7 @@
       },
       {
         "Name": "Vehicle.Available",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -90,16 +85,6 @@
       {
         "Name": "Vehicle.CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.Remarks",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -128,6 +113,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Vehicle.Brand.RentalCharge",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
         "Name": "Vehicle.Brand.Vehicles",
         "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
@@ -148,22 +138,272 @@
         "IsRequired": false
       },
       {
-        "Name": "UserName",
+        "Name": "PhoneNumber",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "ReturnedDate",
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BillingAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InsuranceRequired",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SpecialRequests",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.TotalAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.DiscountAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.TotalBeforeDiscount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.PaymentMethod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.StartDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.EndDate",
         "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "PaidAmount",
+        "Name": "BookingConfirmation.Booking.LicenseImgPath",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "cnicImageFile",
+        "Name": "BookingConfirmation.Booking.Place",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.VehicleId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.VehicleId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Detail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Popular",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Damage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Available",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.VehicleModelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.VehicleBrandName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.RentalCharge",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.VehicleCategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BillingAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.InsuranceRequired",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.SpecialRequests",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.TotalAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.DiscountAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.TotalBeforeDiscount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.PaymentMethod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Booking",
+        "Type": "Carrental.WebAPI.Models.Booking",
+        "IsRequired": false
+      },
+      {
+        "Name": "licenseImage",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
@@ -214,15 +454,31 @@
   },
   {
     "ContainingType": "Carrental.WebAPI.Controllers.BookingController",
-    "Method": "GetCNICImage",
-    "RelativePath": "api/Booking/GetCNICImage/{id}",
+    "Method": "GetLicenseImage",
+    "RelativePath": "api/Booking/GetLicenseImage/{bookingId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "bookingId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.BookingController",
+    "Method": "GetLicenseImage",
+    "RelativePath": "api/Booking/images/{filename}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filename",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -247,27 +503,22 @@
         "IsRequired": false
       },
       {
-        "Name": "StartTime",
+        "Name": "StartDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
       {
-        "Name": "EndTime",
-        "Type": "System.DateTime",
+        "Name": "EndDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "CNICimgPath",
+        "Name": "LicenseImgPath",
         "Type": "System.String",
         "IsRequired": false
       },
       {
         "Name": "Place",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Charges",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -298,7 +549,7 @@
       },
       {
         "Name": "Vehicle.Popular",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -308,7 +559,7 @@
       },
       {
         "Name": "Vehicle.Available",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -324,16 +575,6 @@
       {
         "Name": "Vehicle.CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Vehicle.Remarks",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -362,6 +603,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Vehicle.Brand.RentalCharge",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
         "Name": "Vehicle.Brand.Vehicles",
         "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
@@ -382,24 +628,327 @@
         "IsRequired": false
       },
       {
-        "Name": "UserName",
+        "Name": "PhoneNumber",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "ReturnedDate",
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BillingAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InsuranceRequired",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SpecialRequests",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.TotalAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.DiscountAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.TotalBeforeDiscount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.PaymentMethod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.StartDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.EndDate",
         "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "PaidAmount",
+        "Name": "BookingConfirmation.Booking.LicenseImgPath",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "cnicImageFile",
+        "Name": "BookingConfirmation.Booking.Place",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.VehicleId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.VehicleId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Detail",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.VehicleImages",
+        "Type": "System.Collections.Generic.List\u00601[[Carrental.WebAPI.Models.VehicleImage, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Popular",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Damage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Available",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.ModelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.VehicleModelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Model.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.BrandId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.VehicleBrandName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.RentalCharge",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Brand.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.VehicleCategoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Vehicle.Category.Vehicles",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Carrental.WebAPI.Models.Vehicle, Carrental.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BillingAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.InsuranceRequired",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.SpecialRequests",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.TotalAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.DiscountAmount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.TotalBeforeDiscount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.PaymentMethod",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingConfirmation.Booking.BookingConfirmation.Booking",
+        "Type": "Carrental.WebAPI.Models.Booking",
+        "IsRequired": false
+      },
+      {
+        "Name": "licenseImage",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.BookingConfirmationController",
+    "Method": "ConfirmBooking",
+    "RelativePath": "api/BookingConfirmation/ConfirmBooking/{bookingId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "confirmation",
+        "Type": "BookingConfirmation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.BookingConfirmationController",
+    "Method": "GetBookingConfirmationDetails",
+    "RelativePath": "api/BookingConfirmation/GetBookingConfirmationDetails/{bookingId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.BookingConfirmationController",
+    "Method": "GetTotalAmount",
+    "RelativePath": "api/BookingConfirmation/GetTotalAmount/{bookingId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -478,85 +1027,6 @@
       {
         "Name": "category",
         "Type": "Carrental.WebAPI.Models.VehicleCategory",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.LocationController",
-    "Method": "AddLocation",
-    "RelativePath": "api/Location/AddLocation",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "location",
-        "Type": "Carrental.WebAPI.Models.Location",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.LocationController",
-    "Method": "DeleteLocation",
-    "RelativePath": "api/Location/DeleteLocation/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.LocationController",
-    "Method": "GetLocation",
-    "RelativePath": "api/Location/GetLocation/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.LocationController",
-    "Method": "GetLocations",
-    "RelativePath": "api/Location/GetLocations",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Carrental.WebAPI.Controllers.LocationController",
-    "Method": "UpdateLocation",
-    "RelativePath": "api/Location/UpdateLocation/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "location",
-        "Type": "Carrental.WebAPI.Models.Location",
         "IsRequired": true
       }
     ],
@@ -650,7 +1120,7 @@
       },
       {
         "Name": "Popular",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -660,7 +1130,7 @@
       },
       {
         "Name": "Available",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -676,16 +1146,6 @@
       {
         "Name": "CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Remarks",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -711,6 +1171,11 @@
       {
         "Name": "Brand.VehicleBrandName",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.RentalCharge",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
@@ -759,6 +1224,16 @@
   },
   {
     "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
+    "Method": "GetPopularVehicles",
+    "RelativePath": "api/Vehicle/GetPopularVehicles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
     "Method": "GetVehicle",
     "RelativePath": "api/Vehicle/GetVehicle/{id}",
     "HttpMethod": "GET",
@@ -801,6 +1276,22 @@
   },
   {
     "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
+    "Method": "GetImage",
+    "RelativePath": "api/Vehicle/images/{filename}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filename",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carrental.WebAPI.Controllers.VehicleController",
     "Method": "UpdateVehicle",
     "RelativePath": "api/Vehicle/UpdateVehicle/{id}",
     "HttpMethod": "PUT",
@@ -834,7 +1325,7 @@
       },
       {
         "Name": "Popular",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -844,7 +1335,7 @@
       },
       {
         "Name": "Available",
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "IsRequired": false
       },
       {
@@ -860,16 +1351,6 @@
       {
         "Name": "CategoryId",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Remarks",
-        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -895,6 +1376,11 @@
       {
         "Name": "Brand.VehicleBrandName",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand.RentalCharge",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {

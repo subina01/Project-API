@@ -1,5 +1,6 @@
 ﻿using Carrental.WebAPI.Data;
 using Carrental.WebAPI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -14,11 +15,12 @@ namespace Carrental.WebAPI.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly string _imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+        private readonly string _uploadsDirectory;
 
         public VehicleController(ApplicationDbContext context)
         {
             _context = context;
+            _uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
         }
 
         // Get all Vehicles
@@ -26,11 +28,29 @@ namespace Carrental.WebAPI.Controllers
         public IActionResult GetVehicles()
         {
             var vehicles = _context.Vehicles
+                 .AsNoTracking()
                 .Include(v => v.VehicleImages)
                 .Include(v => v.Category)
                 .Include(v => v.Model)
                 .Include(v => v.Brand)
                 .ToList();
+
+
+            string baseUrl = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/";
+
+
+
+            foreach (var vehicle in vehicles)
+            {
+                if (vehicle.VehicleImages != null && vehicle.VehicleImages.Count > 0)
+                {
+                    foreach (var image in vehicle.VehicleImages)
+                    {
+
+                        image.ImagePath = $"{baseUrl}{image.ImagePath}";
+                    }
+                }
+            }
 
             return Ok(vehicles);
         }
@@ -40,6 +60,7 @@ namespace Carrental.WebAPI.Controllers
         public IActionResult GetVehicle(int id)
         {
             var vehicle = _context.Vehicles
+                 .AsNoTracking()
                 .Include(v => v.VehicleImages)
                 .Include(v => v.Category)
                 .Include(v => v.Model)
@@ -51,9 +72,23 @@ namespace Carrental.WebAPI.Controllers
                 return NoContent();
             }
 
+
+            string baseUrl = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/";
+
+
+            if (vehicle.VehicleImages != null && vehicle.VehicleImages.Count > 0)
+            {
+                foreach (var image in vehicle.VehicleImages)
+                {
+
+                    image.ImagePath = $"{baseUrl}{image.ImagePath}";
+                }
+            }
+
             return Ok(vehicle);
         }
 
+        // Add a new Vehicle
         [HttpPost]
         [Route("AddVehicle")]
         public async Task<IActionResult> AddVehicle([FromForm] Vehicle vehicle, List<IFormFile> imageFiles)
@@ -71,13 +106,11 @@ namespace Carrental.WebAPI.Controllers
             }
 
             _context.Vehicles.Add(vehicle);
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
 
-            
-            var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-            if (!Directory.Exists(uploadsDirectory))
+            if (!Directory.Exists(_uploadsDirectory))
             {
-                Directory.CreateDirectory(uploadsDirectory);
+                Directory.CreateDirectory(_uploadsDirectory);
             }
 
             if (imageFiles != null && imageFiles.Count > 0)
@@ -86,17 +119,16 @@ namespace Carrental.WebAPI.Controllers
                 {
                     if (file.Length > 0)
                     {
-                        var imagePath = Path.Combine(uploadsDirectory, file.FileName);
+                        var imagePath = Path.Combine(_uploadsDirectory, file.FileName);
                         using (var stream = new FileStream(imagePath, FileMode.Create))
                         {
                             await file.CopyToAsync(stream);
                         }
 
-                   
                         var vehicleImage = new VehicleImage
                         {
-                            ImagePath = file.FileName, 
-                            VehicleId = vehicle.VehicleId 
+                            ImagePath = file.FileName,
+                            VehicleId = vehicle.VehicleId
                         };
 
                         _context.VehicleImages.Add(vehicleImage);
@@ -108,8 +140,7 @@ namespace Carrental.WebAPI.Controllers
             return Ok("Vehicle added successfully with images.");
         }
 
-
-
+        // Update a Vehicle
         [HttpPut("UpdateVehicle/{id}")]
         public async Task<IActionResult> UpdateVehicle(int id, [FromForm] Vehicle vehicle, [FromForm] List<IFormFile> vehicleImages)
         {
@@ -119,23 +150,16 @@ namespace Carrental.WebAPI.Controllers
                 return NotFound("Vehicle not found.");
             }
 
-
             existingVehicle.VehicleImages.Clear();
 
             if (vehicleImages != null && vehicleImages.Count > 0)
             {
-                var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-                if (!Directory.Exists(uploadsDirectory))
-                {
-                    Directory.CreateDirectory(uploadsDirectory);
-                }
-
                 foreach (var image in vehicleImages)
                 {
                     if (image.Length > 0)
                     {
                         var fileName = Path.GetFileName(image.FileName);
-                        var filePath = Path.Combine(uploadsDirectory, fileName);
+                        var filePath = Path.Combine(_uploadsDirectory, fileName);
 
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
@@ -160,8 +184,6 @@ namespace Carrental.WebAPI.Controllers
             existingVehicle.ModelId = vehicle.ModelId;
             existingVehicle.BrandId = vehicle.BrandId;
             existingVehicle.CategoryId = vehicle.CategoryId;
-            existingVehicle.UserName = vehicle.UserName;
-            existingVehicle.Remarks = vehicle.Remarks;
 
             await _context.SaveChangesAsync();
 
@@ -185,17 +207,17 @@ namespace Carrental.WebAPI.Controllers
             return Ok("Vehicle deleted successfully");
         }
 
-        //Get Vehicles By Category
+        // Get Vehicles By Category
         [HttpGet("GetVehiclesByCategory/{categoryId}")]
         public IActionResult GetVehiclesByCategory(int categoryId)
         {
-           
             var vehicles = _context.Vehicles
-                .Where(v => v.CategoryId == categoryId)  
-                .Include(v => v.Category)                 
-                .Include(v => v.Model)                    
-                .Include(v => v.Brand)                    
-                .Include(v => v.VehicleImages)            
+                .Where(v => v.CategoryId == categoryId)
+                 .AsNoTracking()
+                .Include(v => v.Category)
+                .Include(v => v.Model)
+                .Include(v => v.Brand)
+                .Include(v => v.VehicleImages)
                 .ToList();
 
             if (vehicles == null || vehicles.Count == 0)
@@ -203,20 +225,35 @@ namespace Carrental.WebAPI.Controllers
                 return NotFound($"No vehicles found for category id {categoryId}");
             }
 
+
+            string baseUrl = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/";
+
+
+            foreach (var vehicle in vehicles)
+            {
+                if (vehicle.VehicleImages != null && vehicle.VehicleImages.Count > 0)
+                {
+                    foreach (var image in vehicle.VehicleImages)
+                    {
+                        image.ImagePath = $"{baseUrl}{image.ImagePath}";
+                    }
+                }
+            }
+
             return Ok(vehicles);
         }
 
-
+        // Get popular vehicles
         [HttpGet("GetPopularVehicles")]
         public IActionResult GetPopularVehicles()
         {
-            
             var vehicles = _context.Vehicles
-                .Where(v => v.Popular.ToLower() == "Yes") 
-                .Include(v => v.Category)                
-                .Include(v => v.Model)                   
-                .Include(v => v.Brand)                    
-                .Include(v => v.VehicleImages)           
+                .Where(v => v.Popular == true)
+                 .AsNoTracking()
+                .Include(v => v.Category)
+                .Include(v => v.Model)
+                .Include(v => v.Brand)
+                .Include(v => v.VehicleImages)
                 .ToList();
 
             if (vehicles == null || vehicles.Count == 0)
@@ -224,8 +261,36 @@ namespace Carrental.WebAPI.Controllers
                 return NotFound("No popular vehicles found.");
             }
 
+
+            string baseUrl = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/";
+
+
+            foreach (var vehicle in vehicles)
+            {
+                if (vehicle.VehicleImages != null && vehicle.VehicleImages.Count > 0)
+                {
+                    foreach (var image in vehicle.VehicleImages)
+                    {
+                        image.ImagePath = $"{baseUrl}{image.ImagePath}";
+                    }
+                }
+            }
+
             return Ok(vehicles);
         }
 
+        // Endpoint to get vehicle images
+        [HttpGet("images/{filename}")]
+        public IActionResult GetImage(string filename)
+        {
+            var filePath = Path.Combine(_uploadsDirectory, filename);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            return PhysicalFile(filePath, "image/jpeg");
+        }
     }
 }

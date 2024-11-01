@@ -22,6 +22,42 @@ namespace Carrental.WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("BookingConfirmation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DiscountAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalBeforeDiscount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId")
+                        .IsUnique();
+
+                    b.ToTable("BookingConfirmations");
+                });
+
             modelBuilder.Entity("Carrental.WebAPI.Models.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -30,29 +66,44 @@ namespace Carrental.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CNICimgPath")
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("BillingAddress")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Charges")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PaidAmount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("InsuranceRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LicenseImgPath")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Place")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("SpecialRequests")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ReturnedDate")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("VehicleId")
                         .HasColumnType("int");
@@ -62,23 +113,6 @@ namespace Carrental.WebAPI.Migrations
                     b.HasIndex("VehicleId");
 
                     b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("Carrental.WebAPI.Models.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Place")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("Carrental.WebAPI.Models.User", b =>
@@ -159,9 +193,8 @@ namespace Carrental.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleId"));
 
-                    b.Property<string>("Available")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -180,20 +213,11 @@ namespace Carrental.WebAPI.Migrations
                     b.Property<int>("ModelId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Popular")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Popular")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VehicleId");
 
@@ -214,6 +238,9 @@ namespace Carrental.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
 
+                    b.Property<decimal>("RentalCharge")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("VehicleBrandName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -221,6 +248,56 @@ namespace Carrental.WebAPI.Migrations
                     b.HasKey("BrandId");
 
                     b.ToTable("VehicleBrands");
+
+                    b.HasData(
+                        new
+                        {
+                            BrandId = 1,
+                            RentalCharge = 6000m,
+                            VehicleBrandName = "Hyundai"
+                        },
+                        new
+                        {
+                            BrandId = 2,
+                            RentalCharge = 5100m,
+                            VehicleBrandName = "Suzuki"
+                        },
+                        new
+                        {
+                            BrandId = 3,
+                            RentalCharge = 7500m,
+                            VehicleBrandName = "Toyota"
+                        },
+                        new
+                        {
+                            BrandId = 4,
+                            RentalCharge = 7000m,
+                            VehicleBrandName = "Honda"
+                        },
+                        new
+                        {
+                            BrandId = 5,
+                            RentalCharge = 5500m,
+                            VehicleBrandName = "Tata Motors"
+                        },
+                        new
+                        {
+                            BrandId = 6,
+                            RentalCharge = 4000m,
+                            VehicleBrandName = "Ashok Leyland"
+                        },
+                        new
+                        {
+                            BrandId = 7,
+                            RentalCharge = 4800m,
+                            VehicleBrandName = "Mahindra"
+                        },
+                        new
+                        {
+                            BrandId = 8,
+                            RentalCharge = 5000m,
+                            VehicleBrandName = "Eicher"
+                        });
                 });
 
             modelBuilder.Entity("Carrental.WebAPI.Models.VehicleCategory", b =>
@@ -237,6 +314,73 @@ namespace Carrental.WebAPI.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("VehicleCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            VehicleCategoryName = "Car"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            VehicleCategoryName = "Bus"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            VehicleCategoryName = "Sumo"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            VehicleCategoryName = "Truck"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            VehicleCategoryName = "Minivan"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            VehicleCategoryName = "Jeep"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            VehicleCategoryName = "Microbus"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            VehicleCategoryName = "Tempo"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            VehicleCategoryName = "Van"
+                        },
+                        new
+                        {
+                            CategoryId = 10,
+                            VehicleCategoryName = "Scooter"
+                        },
+                        new
+                        {
+                            CategoryId = 11,
+                            VehicleCategoryName = "Cycle"
+                        },
+                        new
+                        {
+                            CategoryId = 12,
+                            VehicleCategoryName = "Bike"
+                        },
+                        new
+                        {
+                            CategoryId = 13,
+                            VehicleCategoryName = "Scorpio"
+                        });
                 });
 
             modelBuilder.Entity("Carrental.WebAPI.Models.VehicleImage", b =>
@@ -275,6 +419,224 @@ namespace Carrental.WebAPI.Migrations
                     b.HasKey("ModelId");
 
                     b.ToTable("VehicleModels");
+
+                    b.HasData(
+                        new
+                        {
+                            ModelId = 1,
+                            VehicleModelName = "i10"
+                        },
+                        new
+                        {
+                            ModelId = 2,
+                            VehicleModelName = "i20"
+                        },
+                        new
+                        {
+                            ModelId = 3,
+                            VehicleModelName = "Creta"
+                        },
+                        new
+                        {
+                            ModelId = 4,
+                            VehicleModelName = "Santro"
+                        },
+                        new
+                        {
+                            ModelId = 5,
+                            VehicleModelName = "Alto"
+                        },
+                        new
+                        {
+                            ModelId = 6,
+                            VehicleModelName = "Swift"
+                        },
+                        new
+                        {
+                            ModelId = 7,
+                            VehicleModelName = "WagonR"
+                        },
+                        new
+                        {
+                            ModelId = 8,
+                            VehicleModelName = "Celerio"
+                        },
+                        new
+                        {
+                            ModelId = 9,
+                            VehicleModelName = "Corolla"
+                        },
+                        new
+                        {
+                            ModelId = 10,
+                            VehicleModelName = "Yaris"
+                        },
+                        new
+                        {
+                            ModelId = 11,
+                            VehicleModelName = "Vitz"
+                        },
+                        new
+                        {
+                            ModelId = 12,
+                            VehicleModelName = "City"
+                        },
+                        new
+                        {
+                            ModelId = 13,
+                            VehicleModelName = "Amaze"
+                        },
+                        new
+                        {
+                            ModelId = 14,
+                            VehicleModelName = "Jazz"
+                        },
+                        new
+                        {
+                            ModelId = 15,
+                            VehicleModelName = "Tiago"
+                        },
+                        new
+                        {
+                            ModelId = 16,
+                            VehicleModelName = "Nexon"
+                        },
+                        new
+                        {
+                            ModelId = 17,
+                            VehicleModelName = "Tigor"
+                        },
+                        new
+                        {
+                            ModelId = 18,
+                            VehicleModelName = "LP 407"
+                        },
+                        new
+                        {
+                            ModelId = 19,
+                            VehicleModelName = "LP 1512"
+                        },
+                        new
+                        {
+                            ModelId = 20,
+                            VehicleModelName = "Viking"
+                        },
+                        new
+                        {
+                            ModelId = 21,
+                            VehicleModelName = "Cheetah"
+                        },
+                        new
+                        {
+                            ModelId = 22,
+                            VehicleModelName = "Cruzio"
+                        },
+                        new
+                        {
+                            ModelId = 23,
+                            VehicleModelName = "Supro Bus"
+                        },
+                        new
+                        {
+                            ModelId = 24,
+                            VehicleModelName = "Skyline"
+                        },
+                        new
+                        {
+                            ModelId = 25,
+                            VehicleModelName = "Starline"
+                        },
+                        new
+                        {
+                            ModelId = 26,
+                            VehicleModelName = "Sumo Gold"
+                        },
+                        new
+                        {
+                            ModelId = 27,
+                            VehicleModelName = "Sumo Victa"
+                        },
+                        new
+                        {
+                            ModelId = 28,
+                            VehicleModelName = "Bolero"
+                        },
+                        new
+                        {
+                            ModelId = 29,
+                            VehicleModelName = "Scorpio"
+                        },
+                        new
+                        {
+                            ModelId = 30,
+                            VehicleModelName = "Blazo"
+                        },
+                        new
+                        {
+                            ModelId = 31,
+                            VehicleModelName = "Furio"
+                        },
+                        new
+                        {
+                            ModelId = 32,
+                            VehicleModelName = "Pro 3015"
+                        },
+                        new
+                        {
+                            ModelId = 33,
+                            VehicleModelName = "Pro 2049"
+                        },
+                        new
+                        {
+                            ModelId = 34,
+                            VehicleModelName = "Dost+"
+                        },
+                        new
+                        {
+                            ModelId = 35,
+                            VehicleModelName = "2516 IL"
+                        },
+                        new
+                        {
+                            ModelId = 36,
+                            VehicleModelName = "Eeco"
+                        },
+                        new
+                        {
+                            ModelId = 37,
+                            VehicleModelName = "Omni"
+                        },
+                        new
+                        {
+                            ModelId = 38,
+                            VehicleModelName = "Venture"
+                        },
+                        new
+                        {
+                            ModelId = 39,
+                            VehicleModelName = "Winger"
+                        },
+                        new
+                        {
+                            ModelId = 40,
+                            VehicleModelName = "Supro Van"
+                        },
+                        new
+                        {
+                            ModelId = 41,
+                            VehicleModelName = "Bolero Camper"
+                        });
+                });
+
+            modelBuilder.Entity("BookingConfirmation", b =>
+                {
+                    b.HasOne("Carrental.WebAPI.Models.Booking", "Booking")
+                        .WithOne("BookingConfirmation")
+                        .HasForeignKey("BookingConfirmation", "BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("Carrental.WebAPI.Models.Booking", b =>
@@ -323,6 +685,11 @@ namespace Carrental.WebAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("Carrental.WebAPI.Models.Booking", b =>
+                {
+                    b.Navigation("BookingConfirmation");
                 });
 
             modelBuilder.Entity("Carrental.WebAPI.Models.Vehicle", b =>

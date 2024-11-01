@@ -1,8 +1,12 @@
 ﻿using Carrental.WebAPI.Data;
+using Carrental.WebAPI.Migrations;
 using Carrental.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Carrental.WebAPI.Controllers
@@ -12,159 +16,263 @@ namespace Carrental.WebAPI.Controllers
     public class BookingController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly string _cnicImageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cnic-images");
+        private readonly string _uploadsDirectory;
 
         public BookingController(ApplicationDbContext context)
         {
             _context = context;
-
-            // Ensure the directory exists
-            if (!Directory.Exists(_cnicImageDirectory))
-            {
-                Directory.CreateDirectory(_cnicImageDirectory);
-            }
+            _uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
         }
 
-        // Get all Bookings
-        [HttpGet]
-        [Route("GetBookings")]
+        private string GetLicenseImageUrl(string imagePath)
+        {
+            return $"{Request.Scheme}://{Request.Host}/api/Booking/images/{imagePath}";
+        }
+        [HttpGet("GetBookings")]
         public IActionResult GetBookings()
         {
-            return Ok(_context.Bookings.ToList());
+            var bookings = _context.Bookings
+                .Include(b => b.Vehicle)
+                    .ThenInclude(v => v.Model)
+                .Include(b => b.Vehicle)
+                    .ThenInclude(v => v.Brand)
+                .Include(b => b.Vehicle)
+                    .ThenInclude(v => v.Category)
+                .Include(b => b.Vehicle)
+                    .ThenInclude(v => v.VehicleImages)
+                .ToList();
+
+            foreach (var booking in bookings)
+            {
+                if (!string.IsNullOrEmpty(booking.LicenseImgPath))
+                {
+                    booking.LicenseImgPath = GetLicenseImageUrl(booking.LicenseImgPath);
+                }
+
+                if (booking.Vehicle != null && booking.Vehicle.VehicleImages != null)
+                {
+                    foreach (var image in booking.Vehicle.VehicleImages)
+                    {
+                        if (!string.IsNullOrEmpty(image.ImagePath))
+                        {
+                            image.ImagePath = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/{image.ImagePath}";
+                        }
+                    }
+                }
+            }
+
+            return Ok(bookings);
         }
 
-        // Get a specific Booking by ID
-        [HttpGet]
-        [Route("GetBooking/{id}")]
+        // Get a specific booking by ID
+        [HttpGet("GetBooking/{id}")]
         public IActionResult GetBooking(int id)
         {
-            var booking = _context.Bookings.FirstOrDefault(x => x.Id == id);
+            var booking = _context.Bookings
+                 .Include(b => b.Vehicle)
+             .ThenInclude(v => v.Model) 
+         .Include(b => b.Vehicle)
+             .ThenInclude(v => v.Brand) 
+         .Include(b => b.Vehicle)
+             .ThenInclude(v => v.Category) 
+         .Include(b => b.Vehicle)
+             .ThenInclude(v => v.VehicleImages) 
+         .FirstOrDefault(b => b.Id == id);
+                  
+
+
             if (booking == null)
             {
                 return NoContent();
             }
+
+            if (!string.IsNullOrEmpty(booking.LicenseImgPath))
+            {
+                booking.LicenseImgPath = GetLicenseImageUrl(booking.LicenseImgPath);
+            }
+            if (booking.Vehicle != null && booking.Vehicle.VehicleImages != null)
+            {
+                foreach (var image in booking.Vehicle.VehicleImages)
+                {
+                    if (!string.IsNullOrEmpty(image.ImagePath))
+                    {
+                        image.ImagePath = $"{Request.Scheme}://{Request.Host}/api/Vehicle/images/{image.ImagePath}"; 
+                    }
+                }
+            }
             return Ok(booking);
         }
-
-        // Add a new Booking with CNIC image
-        [HttpPost]
-        [Route("AddBooking")]
-        public async Task<IActionResult> AddBooking([FromForm] Booking booking, IFormFile cnicImageFile)
+        // Add a new booking
+        [HttpPost("AddBooking")]
+        public async Task<IActionResult> AddBooking([FromForm] Carrental.WebAPI.Models.Booking booking, IFormFile licenseImage)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (cnicImageFile != null && cnicImageFile.Length > 0)
+            try
             {
-                var imagePath = Path.Combine(_cnicImageDirectory, cnicImageFile.FileName);
-
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (licenseImage != null && licenseImage.Length > 0)
                 {
-                    await cnicImageFile.CopyToAsync(stream);
+                    if (!Directory.Exists(_uploadsDirectory))
+                    {
+                        Directory.CreateDirectory(_uploadsDirectory);
+                    }
+
+                    var fileName = Path.GetFileName(licenseImage.FileName);
+                    var filePath = Path.Combine(_uploadsDirectory, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await licenseImage.CopyToAsync(stream);
+                    }
+
+                    booking.LicenseImgPath = fileName;
+                }
+                else
+                {
+                    booking.LicenseImgPath = "default-image.jpg";
                 }
 
-                booking.CNICimgPath = $"/cnic-images/{cnicImageFile.FileName}";
+                _context.Bookings.Add(booking);
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    Message = "Booking added successfully.",
+                    LicenseImgUrl = $"{Request.Scheme}://{Request.Host}/Uploads/{booking.LicenseImgPath}"
+                });
             }
-
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
-
-            return Ok("Booking added successfully");
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-        // Update an existing Booking with CNIC image
-        [HttpPut]
-        [Route("UpdateBooking/{id}")]
-        public async Task<IActionResult> UpdateBooking(int id, [FromForm] Booking booking, IFormFile cnicImageFile)
+
+        // Update a booking
+        [HttpPut("UpdateBooking/{id}")]
+        public async Task<IActionResult> UpdateBooking(int id, [FromForm] Carrental.WebAPI.Models.Booking booking, IFormFile? licenseImage = null)
         {
-            var existingBooking = _context.Bookings.FirstOrDefault(x => x.Id == id);
+            var existingBooking = await _context.Bookings.FindAsync(id);
             if (existingBooking == null)
             {
-                return BadRequest("Booking not found");
+                return NotFound("Booking not found.");
             }
 
-            existingBooking.StartTime = booking.StartTime;
-            existingBooking.EndTime = booking.EndTime;
-            existingBooking.Place = booking.Place;
-            existingBooking.Charges = booking.Charges;
-            existingBooking.VehicleId = booking.VehicleId;
-            existingBooking.UserName = booking.UserName;
-            existingBooking.ReturnedDate = booking.ReturnedDate;
-            existingBooking.PaidAmount = booking.PaidAmount;
-          
-
-            if (cnicImageFile != null && cnicImageFile.Length > 0)
+            try
             {
-                var imagePath = Path.Combine(_cnicImageDirectory, cnicImageFile.FileName);
+                existingBooking.StartDate = booking.StartDate; 
+                existingBooking.EndDate = booking.EndDate;
+                existingBooking.Place = booking.Place;
+                existingBooking.PhoneNumber = booking.PhoneNumber;
+                existingBooking.Email = booking.Email;
+                existingBooking.Address = booking.Address;
+                existingBooking.BillingAddress = booking.BillingAddress;
+                existingBooking.InsuranceRequired = booking.InsuranceRequired;
+                existingBooking.SpecialRequests = booking.SpecialRequests;
 
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                if (licenseImage != null && licenseImage.Length > 0)
                 {
-                    await cnicImageFile.CopyToAsync(stream);
+                    if (!string.IsNullOrEmpty(existingBooking.LicenseImgPath))
+                    {
+                        var oldImagePath = Path.Combine(_uploadsDirectory, existingBooking.LicenseImgPath);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    var fileName = Path.GetFileName(licenseImage.FileName);
+                    var filePath = Path.Combine(_uploadsDirectory, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await licenseImage.CopyToAsync(stream);
+                    }
+
+                    existingBooking.LicenseImgPath = fileName;
                 }
 
-                existingBooking.CNICimgPath = $"/cnic-images/{cnicImageFile.FileName}";
+                await _context.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    Message = "Booking updated successfully.",
+                    LicenseImgUrl = $"{Request.Scheme}://{Request.Host}/Uploads/{existingBooking.LicenseImgPath}"
+                });
             }
-
-            _context.SaveChanges();
-
-            return Ok("Booking updated successfully");
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-        // Get CNIC Image by Booking ID
-        [HttpGet]
-        [Route("GetCNICImage/{id}")]
-        public IActionResult GetCNICImage(int id)
+        // Delete a booking
+        [HttpDelete("DeleteBooking/{id}")]
+        public async Task<IActionResult> DeleteBooking(int id)
         {
-            var booking = _context.Bookings.FirstOrDefault(x => x.Id == id);
-            if (booking == null || string.IsNullOrEmpty(booking.CNICimgPath))
-            {
-                return NotFound();
-            }
-
-            var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", booking.CNICimgPath.TrimStart('/'));
-
-            if (!System.IO.File.Exists(imagePath))
-            {
-                return NotFound();
-            }
-
-            var image = System.IO.File.ReadAllBytes(imagePath);
-            return File(image, "image/jpeg");
-        }
-
-        // Delete a Booking
-        [HttpDelete]
-        [Route("DeleteBooking/{id}")]
-        public IActionResult DeleteBooking(int id)
-        {
-            var booking = _context.Bookings.FirstOrDefault(x => x.Id == id);
+            var booking = await _context.Bookings.FindAsync(id);
             if (booking == null)
             {
-                return BadRequest("Booking not found");
+                return NotFound("Booking not found.");
             }
 
-            // Delete the CNIC image file if it exists
-            if (!string.IsNullOrEmpty(booking.CNICimgPath))
+            try
             {
-                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", booking.CNICimgPath.TrimStart('/'));
-
-                if (System.IO.File.Exists(imagePath))
+                if (!string.IsNullOrEmpty(booking.LicenseImgPath))
                 {
-                    System.IO.File.Delete(imagePath);
+                    var imagePath = Path.Combine(_uploadsDirectory, booking.LicenseImgPath);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
                 }
+
+                _context.Bookings.Remove(booking);
+                await _context.SaveChangesAsync();
+
+                return Ok("Booking deleted successfully.");
             }
-
-            _context.Bookings.Remove(booking);
-            _context.SaveChanges();
-            _context.ReseedAllTables();
-
-            return Ok("Booking deleted successfully");
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
+        
+        // Get License Image by Booking ID
+        [HttpGet("GetLicenseImage/{bookingId}")]
+        public async Task<IActionResult> GetLicenseImage(int bookingId)
+        {
+            var booking = await _context.Bookings.FindAsync(bookingId);
+            if (booking == null || string.IsNullOrEmpty(booking.LicenseImgPath))
+            {
+                return NotFound("Image not found.");
+            }
 
+            var filePath = Path.Combine(_uploadsDirectory, booking.LicenseImgPath);
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound("Image file not found.");
+            }
+
+            var image = System.IO.File.ReadAllBytes(filePath);
+            return File(image, "image/jpeg"); 
+        }
+
+        [HttpGet("images/{filename}")]
+        public IActionResult GetLicenseImage(string filename)
+        {
+            var filePath = Path.Combine(_uploadsDirectory, filename);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            return PhysicalFile(filePath, "image/jpeg");
+        }
     }
 }
-
-
